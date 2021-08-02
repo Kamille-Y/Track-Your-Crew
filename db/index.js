@@ -1,20 +1,20 @@
 const connection = require("./connection");
 
 class DB {
-  // Keeping a reference to the connection on the class in case we need it later
+  // reference to the connection on the class for future use
   constructor(connection) {
     this.connection = connection;
   }
 
   // Find all employees, join with roles and departments to display their roles, salaries, departments, and managers
-  findAllEmployees() {
+  findAllMembers() {
     return this.connection.query(
       "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;"
     );
   }
 
   // Find all employees except the given employee id
-  findAllPossibleManagers(employeeId) {
+  findAllManagers(employeeId) {
     return this.connection.query(
       "SELECT id, first_name, last_name FROM employee WHERE id != ?",
       employeeId
@@ -74,8 +74,8 @@ class DB {
     );
   }
 
-  // Create a new department
-  createDepartment(department) {
+  //  a new department
+  addDepartment(department) {
     return this.connection.query("INSERT INTO department SET ?", department);
   }
 
@@ -88,15 +88,15 @@ class DB {
   }
 
   // Find all employees in a given department, join with roles to display role titles
-  findAllEmployeesByDepartment(departmentId) {
+  findAllMembersByDepartment(departmentId) {
     return this.connection.query(
       "SELECT employee.id, employee.first_name, employee.last_name, role.title FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department department on role.department_id = department.id WHERE department.id = ?;",
       departmentId
     );
   }
 
-  // Find all employees by manager, join with departments and roles to display titles and department names
-  findAllEmployeesByManager(managerId) {
+  // Find all staff by manager, connect to departments/roles to show titles and department names
+  findAllMembersByManager(managerId) {
     return this.connection.query(
       "SELECT employee.id, employee.first_name, employee.last_name, department.name AS department, role.title FROM employee LEFT JOIN role on role.id = employee.role_id LEFT JOIN department ON department.id = role.department_id WHERE manager_id = ?;",
       managerId
