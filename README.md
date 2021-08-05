@@ -5,5 +5,8 @@ A MySQL supported application that allows Users to track/add/delete employees/ro
 ## Installation
 Useres will run "npm i" This will load required dependencies.
 ## Usage 
-After "npm i", user will run "npm start" this will que prompts in the terminal.
+Add store and delete employees from a database 
+
 ## Demo
+After "npm i", user will run "npm start" this will que prompts in the terminal.
+https://youtu.be/ES2i_uC2zyI
