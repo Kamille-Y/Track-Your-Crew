@@ -1,4 +1,4 @@
-use TrackYourCrew;
+use employees;
 
 INSERT INTO department
     (name)

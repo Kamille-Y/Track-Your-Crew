@@ -4,7 +4,7 @@ require("console.table");
 
 init();
 
-// Display logo text, load main prompts
+// Display logo text, load  smain prompts
 function init() {
   console.log('WELCOME TO THE EMPLOYEE MANAGEMENT SYSTEM! PLEASE SELECT ONE OF THE OPTIONS BELOW:');
 
@@ -448,6 +448,6 @@ async function addEmployee() {
 }
 
 function quit() {
-  console.log("Goodbye!");
+  console.log("Have a great day!");
   process.exit();
 }
